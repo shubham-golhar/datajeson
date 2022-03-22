@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
+export default function StudentList({ students, xyz, a }) {
+  useEffect(() => {
+    console.log('asfsafasf', a)
+    return () => {
+      debugger
+    }
+  }, []);
 
-export default function StudentList({ students }) {
+
   return (
     <div className="container">
       <div className="row">
@@ -10,7 +17,7 @@ export default function StudentList({ students }) {
           .map((s) => {
             return (
               <div className="col-3 ">
-                <StudentCard student={s} key={s.ID} />
+                <StudentCard student={s} key={s.ID} abc={function (s1) { return xyz(s1) }} />
               </div>
             );
           })}
@@ -19,15 +26,12 @@ export default function StudentList({ students }) {
   );
 }
 
-function StudentCard({ student }) {
-  function studentCardClick(s) {
-    console.log("sdfsdf", s.Name);
-  }
+function StudentCard({ student, abc }) {
   return (
     <div
       className="card mb-5 p-3 mx-3 studentCard"
       style={{ height: "200px" }}
-      onClick={() => studentCardClick(student)}
+      onClick={() => abc(student)}
     >
       <div className="text-center mb-3" style={{ fontSize: "20px" }}>
         <b>{student.Name}</b>
